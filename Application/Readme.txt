@@ -1,4 +1,19 @@
 ﻿**************************************************
+این مینی دوره، مناسب چه کسانی می‌باشد؟
+**************************************************
+Automation Team
+Security Team
+System Programmers
+Gammers
+**************************************************
+
+**************************************************
+کاری که باید به صورت دستی انجام دهیم
+**************************************************
+Windows + R -> ncpa.cpl
+**************************************************
+
+**************************************************
 کاری که باید به صورت دستی انجام دهیم
 **************************************************
 Get-DnsClientServerAddress
@@ -8,6 +23,8 @@ Set-DnsClientServerAddress -InterfaceIndex ????? -ServerAddresses ('178.22.122.1
 Disable-NetAdapter -Name Wi-Fi -Confirm:$false
 
 Enable-NetAdapter -Name Wi-Fi -Confirm:$false
+
+Set-DnsClientServerAddress -InterfaceIndex ????? -ResetServerAddresses
 **************************************************
 
 **************************************************
@@ -28,4 +45,8 @@ Set-DnsClientServerAddress -InterfaceIndex ????? -ResetServerAddresses
 Disable-NetAdapter -Name Wi-Fi -Confirm:$false
 
 Enable-NetAdapter -Name Wi-Fi -Confirm:$false
+**************************************************
+
+**************************************************
+- Note: This application should be run as administrator!
 **************************************************
