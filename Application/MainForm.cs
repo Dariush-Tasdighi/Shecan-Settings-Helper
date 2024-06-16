@@ -14,17 +14,17 @@ public partial class MainForm : Form
 
 	private void MainForm_Load(object sender, EventArgs e)
 	{
-		TopMost = true;
-		SetTopLevel(value: true);
-		FormBorderStyle = FormBorderStyle.FixedSingle;
+		//TopMost = true;
+		//SetTopLevel(value: true);
+
+		FormBorderStyle =
+			FormBorderStyle.FixedSingle;
 	}
 
 	private void SetButton_Click(object sender, EventArgs e)
 	{
 		var interfaceIndex =
 			GetInterfaceIndex();
-
-		//MessageBox.Show(text: interfaceIndex);
 
 		var processInfo =
 			new ProcessStartInfo
@@ -71,8 +71,6 @@ public partial class MainForm : Form
 	{
 		var interfaceIndex =
 			GetInterfaceIndex();
-
-		//MessageBox.Show(text: interfaceIndex);
 
 		var processInfo =
 			new ProcessStartInfo
@@ -188,7 +186,7 @@ public partial class MainForm : Form
 			process.StandardOutput.ReadToEnd();
 	}
 
-	private void RestartNetAdapterButton_Click(object sender, EventArgs e)
+	private void RestartNetNetworkAdapterButton_Click(object sender, EventArgs e)
 	{
 		DisableNetAdapter();
 		Thread.Sleep(millisecondsTimeout: 5000);
