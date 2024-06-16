@@ -3,7 +3,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace Application;
+namespace MyApplication;
 
 public partial class MainForm : Form
 {

@@ -1,4 +1,4 @@
-﻿namespace Application;
+﻿namespace MyApplication;
 
 partial class LearningForm
 {

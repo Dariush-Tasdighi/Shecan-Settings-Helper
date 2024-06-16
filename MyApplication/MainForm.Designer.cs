@@ -1,4 +1,4 @@
-﻿namespace Application;
+﻿namespace MyApplication;
 
 partial class MainForm
 {
@@ -108,7 +108,7 @@ partial class MainForm
 		MinimizeBox = false;
 		Name = "MainForm";
 		StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-		Text = "Shecan Settings Helper - Version: 1.0.2";
+		Text = "Shecan Settings Helper - Version: 1.0.3";
 		Load += MainForm_Load;
 		ResumeLayout(false);
 		PerformLayout();

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
-namespace Application;
+namespace MyApplication;
 
 public partial class LearningForm : Form
 {
@@ -17,6 +16,7 @@ public partial class LearningForm : Form
 	/// </summary>
 	private void Button1_Click(object sender, EventArgs e)
 	{
+		// ای ندارد NuGet نیازی به نصب هیچ
 		var processInfo =
 			new ProcessStartInfo
 			{
