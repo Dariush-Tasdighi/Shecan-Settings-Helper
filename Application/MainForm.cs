@@ -31,12 +31,8 @@ public partial class MainForm : Form
 			{
 				FileName = "powershell.exe",
 
-				Verb = "runas",
-				CreateNoWindow = true,
-				LoadUserProfile = true,
-				UseShellExecute = false,
-				RedirectStandardOutput = true,
-				WindowStyle = ProcessWindowStyle.Hidden,
+				CreateNoWindow = true, // Default: [false]
+				RedirectStandardOutput = true, // Default: [false]
 			};
 
 		if (professionalCheckBox.Checked)
@@ -83,12 +79,8 @@ public partial class MainForm : Form
 			{
 				FileName = "powershell.exe",
 
-				Verb = "runas",
-				CreateNoWindow = true,
-				LoadUserProfile = true,
-				UseShellExecute = false,
-				RedirectStandardOutput = true,
-				WindowStyle = ProcessWindowStyle.Hidden,
+				CreateNoWindow = true, // Default: [false]
+				RedirectStandardOutput = true, // Default: [false]
 
 				Arguments = $"Set-DnsClientServerAddress -InterfaceIndex {interfaceIndex} -ResetServerAddresses",
 			};
@@ -120,12 +112,8 @@ public partial class MainForm : Form
 		{
 			FileName = "powershell.exe",
 
-			Verb = "runas",
-			CreateNoWindow = true,
-			LoadUserProfile = true,
-			UseShellExecute = false,
-			RedirectStandardOutput = true,
-			WindowStyle = ProcessWindowStyle.Hidden,
+			CreateNoWindow = true, // Default: [false]
+			RedirectStandardOutput = true, // Default: [false]
 
 			Arguments = "Get-DnsClientServerAddress | Where-Object -Property \"InterfaceAlias\" -EQ -Value \"Wi-Fi\" | Where-Object -Property \"AddressFamily\" -EQ -Value \"2\" | Select-Object \"InterfaceIndex\"",
 		};
@@ -157,12 +145,8 @@ public partial class MainForm : Form
 			{
 				FileName = "powershell.exe",
 
-				Verb = "runas",
-				CreateNoWindow = true,
-				LoadUserProfile = true,
-				UseShellExecute = false,
-				RedirectStandardOutput = true,
-				WindowStyle = ProcessWindowStyle.Hidden,
+				CreateNoWindow = true, // Default: [false]
+				RedirectStandardOutput = true, // Default: [false]
 
 				Arguments =
 					"Enable-NetAdapter -Name Wi-Fi -Confirm:$false",
@@ -186,12 +170,8 @@ public partial class MainForm : Form
 			{
 				FileName = "powershell.exe",
 
-				Verb = "runas",
-				CreateNoWindow = true,
-				LoadUserProfile = true,
-				UseShellExecute = false,
-				RedirectStandardOutput = true,
-				WindowStyle = ProcessWindowStyle.Hidden,
+				CreateNoWindow = true, // Default: [false]
+				RedirectStandardOutput = true, // Default: [false]
 
 				Arguments =
 					"Disable-NetAdapter -Name Wi-Fi -Confirm:$false",

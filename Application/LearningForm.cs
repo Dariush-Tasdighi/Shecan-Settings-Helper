@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace Application;
@@ -16,14 +17,46 @@ public partial class LearningForm : Form
 	/// </summary>
 	private void Button1_Click(object sender, EventArgs e)
 	{
+		var processInfo =
+			new ProcessStartInfo
+			{
+				FileName = "Calc.exe",
+				Arguments = string.Empty,
+
+				Verb = string.Empty, // Default: [""]
+				WorkingDirectory = string.Empty, // Default: [""]
+
+				ErrorDialog = false, // Default: [false]
+				CreateNoWindow = false, // Default: [false]
+				LoadUserProfile = false, // Default: [false]
+				UseShellExecute = false,// Default: [false]
+
+				StandardErrorEncoding = null, // Default: [null]
+				StandardInputEncoding = null, // Default: [null]
+				StandardOutputEncoding = null, // Default: [null]
+
+				RedirectStandardError = false, // Default: [false]
+				RedirectStandardInput = false, // Default: [false]
+				RedirectStandardOutput = false, // Default: [false]
+
+				Domain = string.Empty, // Default: [""]
+				UserName = string.Empty, // Default: [""]
+				Password = null, // Default: [null]
+				PasswordInClearText = null, // Default: [null]
+				UseCredentialsForNetworkingOnly = false, // Default: [false]
+
+				// Note
+				WindowStyle = ProcessWindowStyle.Normal, // Default: [normal]
+			};
+
 		using var process = new Process();
 
-		process.StartInfo.FileName = @"Calc.exe";
-		//process.StartInfo.FileName = @"C:\Windows\System32\Calc.exe";
-		process.StartInfo.Arguments = string.Empty; // ""
+		process.StartInfo = processInfo;
 
 		process.Start();
 
+		// در صورتی که برنامه اصلی بسته شود
+		// برنامه‌ای که اجرا شده است، بسته نخواهد شد
 		//Close();
 	}
 
@@ -32,15 +65,19 @@ public partial class LearningForm : Form
 	/// </summary>
 	private void Button2_Click(object sender, EventArgs e)
 	{
+		var processInfo =
+			new ProcessStartInfo
+			{
+				FileName = "dotnet.exe",
+				Arguments = "--version",
+
+				CreateNoWindow = true, // Default: [false]
+				RedirectStandardOutput = true, // Default: [false]
+			};
+
 		using var process = new Process();
 
-		process.StartInfo.FileName = @"dotnet.exe";
-		process.StartInfo.Arguments = "--version";
-
-		process.StartInfo.CreateNoWindow = true; // Default: [false]
-		process.StartInfo.UseShellExecute = false; // Default: [false]
-		process.StartInfo.RedirectStandardOutput = true; // Default: [false]
-		process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden; // Default: [normal]
+		process.StartInfo = processInfo;
 
 		process.Start();
 		process.WaitForExit();
@@ -56,23 +93,23 @@ public partial class LearningForm : Form
 	/// </summary>
 	private void Button3_Click(object sender, EventArgs e)
 	{
-		//var pathKey = "MyPath";
-		//var keyName = "MyKeyName";
+		var pathKey = "MyPath";
+		var keyName = "MyKeyName";
 
-		//using var process = new Process();
+		var processInfo =
+			new ProcessStartInfo
+			{
+				FileName = @"reg.exe",
+				//Arguments = $"Add MyPath\\MyKeyName /f",
+				Arguments = $"Add {pathKey}\\{keyName} /f",
 
-		//// In Command Prompt:
-		//// reg Add HKLM\SOFTWARE\MyKeyName /f
-		//// reg Add MyPath\MyKeyName /f
+				CreateNoWindow = true, // Default: [false]
+				RedirectStandardOutput = true, // Default: [false]
+			};
 
-		//process.StartInfo.FileName = @"reg.exe";
-		////process.StartInfo.Arguments = $"Add MyPath\\MyKeyName /f";
-		//process.StartInfo.Arguments = $"Add {pathKey}\\{keyName} /f";
+		using var process = new Process();
 
-		//process.StartInfo.CreateNoWindow = true; // Default: [false]
-		//process.StartInfo.UseShellExecute = false; // Default: [false]
-		//process.StartInfo.RedirectStandardOutput = true; // Default: [false]
-		//process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden; // Default: [normal]
+		process.StartInfo = processInfo;
 
 		//process.Start();
 		//process.WaitForExit();
@@ -80,7 +117,7 @@ public partial class LearningForm : Form
 		//var output =
 		//	process.StandardOutput.ReadToEnd();
 
-		//MessageBox.Show(output);
+		//MessageBox.Show(text: output);
 	}
 
 	/// <summary>
@@ -93,13 +130,8 @@ public partial class LearningForm : Form
 			{
 				FileName = "powershell.exe",
 
-				Verb = "runas",
-
 				CreateNoWindow = true, // Default: [false]
-				LoadUserProfile = true,
-				UseShellExecute = false,// Default: [false]
 				RedirectStandardOutput = true, // Default: [false]
-				WindowStyle = ProcessWindowStyle.Hidden, // Default: [normal]
 
 				Arguments = "Get-DnsClientServerAddress | Where-Object -Property \"InterfaceAlias\" -EQ -Value \"Wi-Fi\" | Where-Object -Property \"AddressFamily\" -EQ -Value \"2\" | Select-Object \"InterfaceIndex\"",
 			};

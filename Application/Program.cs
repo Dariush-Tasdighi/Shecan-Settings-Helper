@@ -9,7 +9,7 @@ internal static class Program
 	{
 		ApplicationConfiguration.Initialize();
 
-		System.Windows.Forms.Application.Run(new MainForm());
-		//System.Windows.Forms.Application.Run(new LearningForm());
+		//System.Windows.Forms.Application.Run(new MainForm());
+		System.Windows.Forms.Application.Run(new LearningForm());
 	}
 }
