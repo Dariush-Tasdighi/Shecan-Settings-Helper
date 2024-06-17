@@ -21,87 +21,133 @@ public partial class MainForm : Form
 			FormBorderStyle.FixedSingle;
 	}
 
-	private void SetButton_Click(object sender, EventArgs e)
+	private void EnableControls()
 	{
-		var interfaceIndex =
-			GetInterfaceIndex();
+		professionalCheckBox.Enabled = true;
 
-		var processInfo =
-			new ProcessStartInfo
-			{
-				FileName = "powershell.exe",
-
-				CreateNoWindow = true, // Default: [false]
-				RedirectStandardOutput = true, // Default: [false]
-			};
-
-		if (professionalCheckBox.Checked)
-		{
-			processInfo.Arguments =
-				$"Set-DnsClientServerAddress -InterfaceIndex {interfaceIndex} -ServerAddresses ('178.22.122.101','185.51.200.1')";
-		}
-		else
-		{
-			processInfo.Arguments =
-				$"Set-DnsClientServerAddress -InterfaceIndex {interfaceIndex} -ServerAddresses ('178.22.122.100','185.51.200.2')";
-		}
-
-		using var process = new Process();
-
-		process.StartInfo = processInfo;
-
-		process.Start();
-		process.WaitForExit();
-
-		var output =
-			process.StandardOutput.ReadToEnd();
-
-		if (output == string.Empty)
-		{
-			MessageBox.Show
-				(text: "Shecan DNS Set Successfully...");
-		}
-		else
-		{
-			MessageBox.Show(text: output);
-		}
+		setDnsButton.Enabled = true;
+		unsetDnsButton.Enabled = true;
+		restartNetworkAdapterButton.Enabled = true;
 	}
 
-	private void UnsetButton_Click(object sender, EventArgs e)
+	private void DisableControls()
 	{
-		var interfaceIndex =
-			GetInterfaceIndex();
+		professionalCheckBox.Enabled = false;
 
-		var processInfo =
-			new ProcessStartInfo
+		setDnsButton.Enabled = false;
+		unsetDnsButton.Enabled = false;
+		restartNetworkAdapterButton.Enabled = false;
+	}
+
+	private void SetDnsButton_Click(object sender, EventArgs e)
+	{
+		DisableControls();
+
+		try
+		{
+			var interfaceIndex =
+				GetInterfaceIndex();
+
+			var processInfo =
+				new ProcessStartInfo
+				{
+					FileName = "powershell.exe",
+
+					CreateNoWindow = true, // Default: [false]
+					RedirectStandardOutput = true, // Default: [false]
+				};
+
+			if (professionalCheckBox.Checked)
 			{
-				FileName = "powershell.exe",
+				processInfo.Arguments =
+					$"Set-DnsClientServerAddress -InterfaceIndex {interfaceIndex} -ServerAddresses ('178.22.122.101','185.51.200.1')";
+			}
+			else
+			{
+				processInfo.Arguments =
+					$"Set-DnsClientServerAddress -InterfaceIndex {interfaceIndex} -ServerAddresses ('178.22.122.100','185.51.200.2')";
+			}
 
-				CreateNoWindow = true, // Default: [false]
-				RedirectStandardOutput = true, // Default: [false]
+			using var process = new Process();
 
-				Arguments = $"Set-DnsClientServerAddress -InterfaceIndex {interfaceIndex} -ResetServerAddresses",
-			};
+			process.StartInfo = processInfo;
 
-		using var process = new Process();
+			process.Start();
+			process.WaitForExit();
 
-		process.StartInfo = processInfo;
+			var output =
+				process.StandardOutput.ReadToEnd();
 
-		process.Start();
-		process.WaitForExit();
-
-		var output =
-			process.StandardOutput.ReadToEnd();
-
-		if (output == string.Empty)
-		{
-			MessageBox.Show
-				(text: "DNS Set to Default Value Successfully...");
+			if (output == string.Empty)
+			{
+				MessageBox.Show
+					(text: "Shecan DNS Set Successfully...");
+			}
+			else
+			{
+				MessageBox.Show(text: output);
+			}
 		}
-		else
+		catch (Exception ex)
 		{
-			MessageBox.Show(text: output);
+			var errorMessage =
+				$"Error! - {ex.Message}";
+
+			MessageBox.Show(text: errorMessage);
 		}
+
+		EnableControls();
+	}
+
+	private void UnsetDnsButton_Click(object sender, EventArgs e)
+	{
+		DisableControls();
+
+		try
+		{
+			var interfaceIndex =
+				GetInterfaceIndex();
+
+			var processInfo =
+				new ProcessStartInfo
+				{
+					FileName = "powershell.exe",
+
+					CreateNoWindow = true, // Default: [false]
+					RedirectStandardOutput = true, // Default: [false]
+
+					Arguments = $"Set-DnsClientServerAddress -InterfaceIndex {interfaceIndex} -ResetServerAddresses",
+				};
+
+			using var process = new Process();
+
+			process.StartInfo = processInfo;
+
+			process.Start();
+			process.WaitForExit();
+
+			var output =
+				process.StandardOutput.ReadToEnd();
+
+			if (output == string.Empty)
+			{
+				MessageBox.Show
+					(text: "DNS Set to Default Value Successfully...");
+			}
+			else
+			{
+				MessageBox.Show(text: output);
+			}
+		}
+		catch (Exception ex)
+		{
+			var errorMessage =
+				$"Error! - {ex.Message}";
+
+			MessageBox.Show(text: errorMessage);
+		}
+
+		EnableControls();
 	}
 
 	private string GetInterfaceIndex()
@@ -158,8 +204,8 @@ public partial class MainForm : Form
 		process.Start();
 		process.WaitForExit();
 
-		var output =
-			process.StandardOutput.ReadToEnd();
+		//var output =
+		//	process.StandardOutput.ReadToEnd();
 	}
 
 	private void DisableNetworkAdapter()
@@ -183,14 +229,28 @@ public partial class MainForm : Form
 		process.Start();
 		process.WaitForExit();
 
-		var output =
-			process.StandardOutput.ReadToEnd();
+		//var output =
+		//	process.StandardOutput.ReadToEnd();
 	}
 
 	private void RestartNetworkAdapterButton_Click(object sender, EventArgs e)
 	{
-		DisableNetworkAdapter();
-		Thread.Sleep(millisecondsTimeout: 5000);
-		EnableNetworkAdapter();
+		DisableControls();
+
+		try
+		{
+			DisableNetworkAdapter();
+			Thread.Sleep(millisecondsTimeout: 5000);
+			EnableNetworkAdapter();
+		}
+		catch (Exception ex)
+		{
+			var errorMessage =
+				$"Error! - {ex.Message}";
+
+			MessageBox.Show(text: errorMessage);
+		}
+
+		EnableControls();
 	}
 }

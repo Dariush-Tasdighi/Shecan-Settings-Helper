@@ -27,6 +27,8 @@ partial class MainForm
 		professionalCheckBox = new System.Windows.Forms.CheckBox();
 		restartNetworkAdapterButton = new System.Windows.Forms.Button();
 		notesLabel = new System.Windows.Forms.Label();
+		poweredByLabel = new System.Windows.Forms.Label();
+		sponsorLabel = new System.Windows.Forms.Label();
 		SuspendLayout();
 		// 
 		// setDnsButton
@@ -37,11 +39,11 @@ partial class MainForm
 		setDnsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 		setDnsButton.Location = new System.Drawing.Point(12, 38);
 		setDnsButton.Name = "setDnsButton";
-		setDnsButton.Size = new System.Drawing.Size(327, 40);
+		setDnsButton.Size = new System.Drawing.Size(358, 40);
 		setDnsButton.TabIndex = 1;
 		setDnsButton.Text = "&Set DNS";
 		setDnsButton.UseVisualStyleBackColor = false;
-		setDnsButton.Click += SetButton_Click;
+		setDnsButton.Click += SetDnsButton_Click;
 		// 
 		// unsetDnsButton
 		// 
@@ -51,11 +53,11 @@ partial class MainForm
 		unsetDnsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 		unsetDnsButton.Location = new System.Drawing.Point(12, 84);
 		unsetDnsButton.Name = "unsetDnsButton";
-		unsetDnsButton.Size = new System.Drawing.Size(327, 40);
+		unsetDnsButton.Size = new System.Drawing.Size(358, 40);
 		unsetDnsButton.TabIndex = 2;
 		unsetDnsButton.Text = "&Unset DNS";
 		unsetDnsButton.UseVisualStyleBackColor = false;
-		unsetDnsButton.Click += UnsetButton_Click;
+		unsetDnsButton.Click += UnsetDnsButton_Click;
 		// 
 		// professionalCheckBox
 		// 
@@ -76,7 +78,7 @@ partial class MainForm
 		restartNetworkAdapterButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 		restartNetworkAdapterButton.Location = new System.Drawing.Point(11, 130);
 		restartNetworkAdapterButton.Name = "restartNetworkAdapterButton";
-		restartNetworkAdapterButton.Size = new System.Drawing.Size(328, 40);
+		restartNetworkAdapterButton.Size = new System.Drawing.Size(359, 40);
 		restartNetworkAdapterButton.TabIndex = 3;
 		restartNetworkAdapterButton.Text = "&Restart Network Adapter";
 		restartNetworkAdapterButton.UseVisualStyleBackColor = false;
@@ -84,20 +86,48 @@ partial class MainForm
 		// 
 		// notesLabel
 		// 
-		notesLabel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+		notesLabel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+		notesLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 		notesLabel.ForeColor = System.Drawing.Color.Red;
 		notesLabel.Location = new System.Drawing.Point(12, 173);
 		notesLabel.Name = "notesLabel";
-		notesLabel.Size = new System.Drawing.Size(327, 35);
+		notesLabel.Size = new System.Drawing.Size(358, 53);
 		notesLabel.TabIndex = 4;
 		notesLabel.Text = "Run this application as Administrator!";
 		notesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+		// 
+		// poweredByLabel
+		// 
+		poweredByLabel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+		poweredByLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+		poweredByLabel.ForeColor = System.Drawing.Color.Blue;
+		poweredByLabel.Location = new System.Drawing.Point(12, 226);
+		poweredByLabel.Name = "poweredByLabel";
+		poweredByLabel.Size = new System.Drawing.Size(358, 53);
+		poweredByLabel.TabIndex = 5;
+		poweredByLabel.Text = "Powered by: Dariush Tasdighi";
+		poweredByLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+		// 
+		// sponsorLabel
+		// 
+		sponsorLabel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+		sponsorLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+		sponsorLabel.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 0);
+		sponsorLabel.ForeColor = System.Drawing.Color.Blue;
+		sponsorLabel.Location = new System.Drawing.Point(11, 279);
+		sponsorLabel.Name = "sponsorLabel";
+		sponsorLabel.Size = new System.Drawing.Size(358, 53);
+		sponsorLabel.TabIndex = 6;
+		sponsorLabel.Text = "اسپانسر: شرکت مهندسی صنایع یاس ارغوانی";
+		sponsorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 		// 
 		// MainForm
 		// 
 		AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
 		AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-		ClientSize = new System.Drawing.Size(351, 217);
+		ClientSize = new System.Drawing.Size(382, 353);
+		Controls.Add(sponsorLabel);
+		Controls.Add(poweredByLabel);
 		Controls.Add(notesLabel);
 		Controls.Add(restartNetworkAdapterButton);
 		Controls.Add(professionalCheckBox);
@@ -108,7 +138,7 @@ partial class MainForm
 		MinimizeBox = false;
 		Name = "MainForm";
 		StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-		Text = "Shecan Settings Helper - Version: 1.0.4";
+		Text = "Shecan Settings Helper - Version: 1.0.5";
 		Load += MainForm_Load;
 		ResumeLayout(false);
 		PerformLayout();
@@ -121,4 +151,6 @@ partial class MainForm
 	private System.Windows.Forms.CheckBox professionalCheckBox;
 	private System.Windows.Forms.Button restartNetworkAdapterButton;
 	private System.Windows.Forms.Label notesLabel;
+	private System.Windows.Forms.Label poweredByLabel;
+	private System.Windows.Forms.Label sponsorLabel;
 }
