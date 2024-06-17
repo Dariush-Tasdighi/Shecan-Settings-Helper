@@ -80,7 +80,7 @@ partial class MainForm
 		restartNetworkAdapterButton.TabIndex = 3;
 		restartNetworkAdapterButton.Text = "&Restart Network Adapter";
 		restartNetworkAdapterButton.UseVisualStyleBackColor = false;
-		restartNetworkAdapterButton.Click += RestartNetNetworkAdapterButton_Click;
+		restartNetworkAdapterButton.Click += RestartNetworkAdapterButton_Click;
 		// 
 		// notesLabel
 		// 
@@ -108,7 +108,7 @@ partial class MainForm
 		MinimizeBox = false;
 		Name = "MainForm";
 		StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-		Text = "Shecan Settings Helper - Version: 1.0.3";
+		Text = "Shecan Settings Helper - Version: 1.0.4";
 		Load += MainForm_Load;
 		ResumeLayout(false);
 		PerformLayout();

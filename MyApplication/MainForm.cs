@@ -106,15 +106,16 @@ public partial class MainForm : Form
 
 	private string GetInterfaceIndex()
 	{
-		var processInfo = new ProcessStartInfo
-		{
-			FileName = "powershell.exe",
+		var processInfo =
+			new ProcessStartInfo
+			{
+				FileName = "powershell.exe",
 
-			CreateNoWindow = true, // Default: [false]
-			RedirectStandardOutput = true, // Default: [false]
+				CreateNoWindow = true, // Default: [false]
+				RedirectStandardOutput = true, // Default: [false]
 
-			Arguments = "Get-DnsClientServerAddress | Where-Object -Property \"InterfaceAlias\" -EQ -Value \"Wi-Fi\" | Where-Object -Property \"AddressFamily\" -EQ -Value \"2\" | Select-Object \"InterfaceIndex\"",
-		};
+				Arguments = "Get-DnsClientServerAddress | Where-Object -Property \"InterfaceAlias\" -EQ -Value \"Wi-Fi\" | Where-Object -Property \"AddressFamily\" -EQ -Value \"2\" | Select-Object \"InterfaceIndex\"",
+			};
 
 		using var process = new Process();
 
@@ -136,7 +137,7 @@ public partial class MainForm : Form
 		return interfaceIndex;
 	}
 
-	private void EnableNetAdapter()
+	private void EnableNetworkAdapter()
 	{
 		var processInfo =
 			new ProcessStartInfo
@@ -161,7 +162,7 @@ public partial class MainForm : Form
 			process.StandardOutput.ReadToEnd();
 	}
 
-	private void DisableNetAdapter()
+	private void DisableNetworkAdapter()
 	{
 		var processInfo =
 			new ProcessStartInfo
@@ -186,10 +187,10 @@ public partial class MainForm : Form
 			process.StandardOutput.ReadToEnd();
 	}
 
-	private void RestartNetNetworkAdapterButton_Click(object sender, EventArgs e)
+	private void RestartNetworkAdapterButton_Click(object sender, EventArgs e)
 	{
-		DisableNetAdapter();
+		DisableNetworkAdapter();
 		Thread.Sleep(millisecondsTimeout: 5000);
-		EnableNetAdapter();
+		EnableNetworkAdapter();
 	}
 }
